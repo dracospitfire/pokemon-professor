@@ -12,7 +12,7 @@ import axios from "axios";
 const App = () => {
   useEffect(() => {
     const ping = () => {
-      axios.get("/api/ping")
+      axios.get("/")
         .then(res => console.log("Backend pinged:", res.status))
         .catch(err => console.error("Ping failed:", err.message));
     };
