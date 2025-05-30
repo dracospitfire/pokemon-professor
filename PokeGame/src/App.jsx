@@ -12,8 +12,8 @@ import axios from "axios";
 const App = () => {
   useEffect(() => {
     const ping = () => {
-      axios.get("/")
-        .then(res => console.log("Backend pinged:", res.status))
+      axios.get(import.meta.env.VITE_API_URL)
+        .then(res => console.log("Backend pinged:", res.data))
         .catch(err => console.error("Ping failed:", err.message));
     };
 
