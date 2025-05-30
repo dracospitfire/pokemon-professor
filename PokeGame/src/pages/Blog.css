@@ -1,0 +1,30 @@
+body.blogpage {
+  margin: 0%;
+  padding: 0%;
+  width: auto;
+  height: 100%;
+  --Franky: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  position: relative;
+  z-index: 0;
+}
+
+body.blogpage::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../assets/Images/background/Pokemon Lab.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+main {
+  width: 90%;
+  justify-items: center;
+}

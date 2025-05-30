@@ -1,0 +1,60 @@
+h2.signup {
+  margin: 0%;
+  padding: 0%;
+  margin-bottom: 15px;
+  color: black;
+  text-align: center;
+  font-family: var(--Franky);
+}
+
+form {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;                                                            /* Centers the form elements */
+  max-width: 350px;                                                               
+  margin: 0 auto;
+}
+
+form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+form input[type="checkbox"] {   
+  width: auto;                                                                    /* Ensures checkbox is the same width */                                                            
+  margin-left: 20%;                                                               /* Space between label and checkbox */
+  margin-right: 23%;
+}
+
+form select {   
+  color: black;
+  width: 55%;                                                                     /* Ensures select is the same width as inputs */
+  padding: 5px;
+  box-sizing: border-box;
+  border: 1px solid;                                                              /* Adds border for consistency */
+  border-radius: 5px;                                                             /* Rounded corners */
+  border-color: black;
+  background-color: white;                                                      /* Background color */
+  text-align: center;                                                             /* Centers the text inside the select */
+}
+
+form label {
+  color: rgb(0, 85, 255);
+  width: 60%;                                                                     /* Ensures labels are the same width */
+  text-align: right;                                                              /* Aligns label text to the right */
+  margin-right: 10px;
+}
+
+form input {
+  width: 55%;                                                                     /* Ensures inputs are the same width */
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+form button:hover {
+  background-color:  rgb(0, 85, 255);;                                           
+}

@@ -1,0 +1,58 @@
+footer.foot-nav {
+  width: 90%;
+  margin: 2%;
+  background-color: rgb(178, 235, 255, 0.7);   
+  border: 1px solid black;                                                           
+}
+
+nav.external-nav {
+  padding: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  gap: .5%;
+  font-family: var(--Franky); 
+  font-size: 130%;
+  color: black;                                                                 /* | Vertical seperators */
+}
+
+.confirmation {
+  padding: 2%;
+  width: 400px;
+  height: 150px;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  border: 2px solid navy;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 80%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+button.exit {
+  margin: 0%;
+  margin-top: 3%;
+  margin-right: 15%;
+  padding: 3% 7%;
+  background-color: #ccc;
+  border: none;
+  font-size: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.stay {
+  margin: 0%;
+  margin-top: 3%;
+  padding: 3% 7%;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  font-size: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}

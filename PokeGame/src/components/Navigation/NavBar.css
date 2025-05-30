@@ -1,0 +1,72 @@
+header.head-nav {
+  width: 90%;
+  max-height: 100%;
+  margin: 2%;
+  background-color: rgb(178, 235, 255, 0.7);   
+  border: 1px solid black; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;                                                          
+}
+
+header.head-nav .logo {
+  padding-top: 7px;
+  padding-left: 18px;
+  padding-bottom: 3px;
+  max-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header.head-nav .logo img {
+  max-height: 32px;
+}
+
+nav.internal-nav {
+  padding: 2%;
+  display: flex;
+  justify-content: right; 
+  align-items: center; 
+  gap: 1%;
+  font-family: var(--Franky); 
+  font-size: 130%;
+  color: black;                                                                 /* | Vertical seperators */
+}
+
+.rest-tool {
+  position: relative;
+  display: inline-block;
+}
+
+.rest-tool-text {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 80%;
+  left: 110%;
+  font-family: var(--Franky);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.rest-tool-text::after {                                                           
+  content: "";                                                                     /* This is for the triangle under the bubble */
+  position: absolute;
+  top: 100%;
+  left: 11%; 
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;                       /* This makes it point to the right */
+}
+
+.rest-tool:hover .rest-tool-text {
+  visibility: visible;
+  opacity: 1;
+}

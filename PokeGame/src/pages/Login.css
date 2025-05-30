@@ -1,0 +1,168 @@
+body.loginpage {
+  margin: 0%;
+  padding: 0%;
+  width: auto;
+  height: 100%;
+  --Franky: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  position: relative;
+  z-index: 0;
+}
+
+body.loginpage::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url('../assets/Images/background/Pokemon Lab.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+.loginpage main {
+  width: 90%;
+  margin: 0%;
+  padding: 0%;
+  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+button.updates {
+  margin: 1%;
+  width: 300px;
+  height: 90px;
+  border: 1px solid black;
+  background-color: rgb(0, 85, 255, 0.85);
+  color: rgb(255, 255, 255);
+  font-size: 125%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+button.updates:hover {
+  background-color: rgb(0, 85, 255);
+}
+
+form.passuser {
+  margin: 0%;
+  max-width: 700px; 
+  color: white;
+  display: flex;
+  flex-direction: column;                                                          /* Centers the form elements */
+}
+
+form.passuser div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+form.passuser label {
+  display: flex;             
+  align-items: center;
+  justify-content: center;       
+  margin: 1%;
+  width: 40%;
+  height: 90px;
+  border: 1px solid black;
+  background-color: rgba(178, 235, 255, 0.85);
+  color: rgb(0, 0, 0);
+  font-size: 125%;
+  font-weight: bold;
+  border-radius: 0;
+}
+
+form.passuser input {
+  margin: 1%;
+  width: 60%;
+  height: 90px;
+  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0.85);
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 150%;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 0;
+}
+
+form button.login {
+  margin: 1%;
+  width: 300px;
+  height: 90px;
+  border: 1px solid black;
+  background-color: rgb(0, 255, 187, 0.75);
+  color: rgb(0, 0, 0);
+  font-size: 125%;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+button.login:hover {
+  background-color: rgb(0, 255, 187);
+}
+
+.userpass {
+  display: flex;
+  flex-direction: center;
+  align-items: flex-start; /* Optional: aligns children to the left */
+}
+
+
+.updates-slide {
+  position: fixed;
+  top: 20%;
+  right: 0;
+  width: 400px;
+  padding-left: 0%;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-bottom: 0%;
+  border: 2px solid navy;
+  background: rgb(216, 239, 248);
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  border-radius: 15px 0 0 15px;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.updates-slide.hidden {
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.updates-slide.visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+section.updates {
+  padding: 2%;
+  border-radius: 10px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+ul.updates {
+  list-style-type: none;
+  padding-left: 7%;
+  margin: 4% 0;
+}
+
+ul.updates li {
+  margin-bottom: 3%;
+}
