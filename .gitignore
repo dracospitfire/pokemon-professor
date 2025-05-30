@@ -31,6 +31,7 @@ coverage
 
 # Node modules
 node_modules/
+/node_modules
 
 # Build directory
 build/
@@ -86,6 +87,7 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+/.env
 .env
 .env.development.local
 .env.test.local
