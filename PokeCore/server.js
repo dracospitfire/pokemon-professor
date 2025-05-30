@@ -25,15 +25,6 @@ connectWebSocket(SERVICE_A_WS_URL);
 app.use(cors({ credentials: true, origin: FE_URL }));
 app.use(express.json());
 
-// Keep-Alive
-setInterval(() => {
-  console.log(FE_URL)
-  fetch(`${FE_URL}/health`)
-    .then(res => res.text())
-    .then(data => console.log(`Message: ${data}`))
-    .catch(err => console.error("Failed to Ping:", err.message));
-}, 1 * 1000);
-
 // API Routes
 app.use("/api/baseStats", require("./routes/serviceARoutes"));
 
