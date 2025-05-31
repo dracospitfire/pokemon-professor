@@ -1,6 +1,13 @@
 // websocket server
 const WebSocket = require("ws");
 
+const { 
+    fetchgetBaseStats,
+    fetchgetHoldItems,
+    fetchgetEVProfile,
+
+} = require("../routes/serviceCRoutes");
+
 function initializeWebSocket(server) {
     const wss = new WebSocket.Server({ server });
 
@@ -21,7 +28,7 @@ function initializeWebSocket(server) {
             switch (type) {
                 case 'baseStats':
                     try {
-                        const data = await getBaseStats(name);
+                        const data = await fetchgetBaseStats(name);
                         ws.send(JSON.stringify({ requestId, type: 'baseStatsResponse', name, data }));
                     } catch (err) {
                         ws.send(JSON.stringify({ requestId, type: 'error', message: err.message }));
@@ -29,15 +36,17 @@ function initializeWebSocket(server) {
                     break;
 
                 case 'holdItems':
-                    {
-                        const data = getHoldItems(name, battleType);
+                    try {
+                        const data = fetchgetHoldItems(name, battleType);
                         ws.send(JSON.stringify({ requestId, type: 'holdItemsResponse', name, data }));
+                    } catch (err) {
+                        ws.send(JSON.stringify({ requestId, type: 'error', message: err.message }));
                     }
                     break;
 
                 case 'evProfile':
                     try {
-                        const data = await getEVProfile(name);
+                        const data = await fetchgetEVProfile(name);
                         ws.send(JSON.stringify({ requestId, type: 'evProfileResponse', name, data }));
                     } catch (err) {
                         ws.send(JSON.stringify({ requestId, type: 'error', message: err.message }));

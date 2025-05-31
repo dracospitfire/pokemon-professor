@@ -7,19 +7,31 @@ require("dotenv").config();
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-// websockets/handlers.js
-async function getBaseStats(name) {
-    const slug = name.toLowerCase().trim();
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${slug}`);
-    if (!res.ok) throw new Error(`Pokemon "${name}" not found`);
-    const json = await res.json();
+async function getBaseStats(name) {    
+    try {
+        const pokename = name.toLowerCase().trim();
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
 
-    const stats = {};
-    json.stats.forEach(s => {
-        const key = s.stat.name.replace(/-/g, '_');
-        stats[key] = s.base_stat;
-    });
-    return stats;
+        if (!res.ok) {
+            const errText = await res.text();
+            console.error("API responded with error body:", errText);
+            throw new Error(`Pokemon "${pokename}" not found (Status: ${res.status})`);
+        }
+        
+        const json = await res.json();
+
+        const stats = {};
+        json.stats.forEach(s => {
+            const key = s.stat.name.replace(/-/g, '_');
+            stats[key] = s.base_stat;
+        });
+
+        return stats;
+
+    } catch (err) {
+        console.error("Error in getBaseStats:", err.message);
+        throw err;
+    }
 }
 
 function getHoldItems(name, battleType) {
@@ -45,7 +57,7 @@ async function getEVProfile(name) {
 
 // Export the functions as methods of an object
 module.exports = {
-  getBaseStats,
-  getHoldItems,
-  getEVProfile,
+    getBaseStats,
+    getHoldItems,
+    getEVProfile,
 };
