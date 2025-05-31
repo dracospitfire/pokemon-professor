@@ -12,11 +12,20 @@ import axios from "axios";
 
 const App = () => {
   useEffect(() => {
+    const urls = [
+      import.meta.env.VITE_API_URL ?? "http://localhost:2020",
+      import.meta.env.VITE_MSA_URL ?? "http://localhost:2121",
+      import.meta.env.VITE_MWB_URL ?? "http://localhost:2222",
+    ];
+
     const ping = () => {
-      axios.get(import.meta.env.VITE_API_URL)
-        .then(res => console.log("Backend pinged:", res.data))
-        .catch(err => console.error("Ping failed:", err.message));
+      urls.forEach((url) => {
+        axios.get(url)
+          .then(res => console.log(`Service ${url} pinged:`, res.data))
+          .catch(err => console.error(`Service ${url} ping failed:`, err.message));
+      });
     };
+
 
     // Initial ping
     ping();
