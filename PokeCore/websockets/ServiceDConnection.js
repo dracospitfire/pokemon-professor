@@ -9,12 +9,12 @@ function connectWebSocket(url) {
 
   ws.on("open", () => {
       console.log("Connected to Service D WebSocket.");
-      // Request Pichu's baseStats every 90 seconds
+      // Request Bulbasaur's baseStats every 90 seconds
       setInterval(() => {
           if (ws.readyState === WebSocket.OPEN) {
             const requestMessage = {
               type: "baseStats",
-              name: "bulbasaur"
+              name: "Bulbasaur"
             };
             ws.send(JSON.stringify(requestMessage));
             console.log(`[${new Date().toISOString()}] Requested Bulbasaur baseStats`);
