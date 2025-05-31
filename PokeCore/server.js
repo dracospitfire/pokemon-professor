@@ -17,11 +17,9 @@ const PORT = process.env.PORT || 2020;
 // Declare the FE_URL variable
 const FE_URL = process.env.FE_URL || "http://localhost:3030"; 
 
-// Declare the Microservice URL variables
-const MSA_URL = process.env.MSA_URL || "http://localhost:2121"; 
-const MSB_URL = process.env.MSB_URL || "http://localhost:2222";
-const MSC_URL = process.env.MSC_URL || "http://localhost:2323";
-const MSD_URL = process.env.MSD_URL || "http://localhost:2424";
+// Middleware:
+app.use(cors({ credentials: true, origin: FE_URL }));
+app.use(express.json());
 
 // Declare the WebSocket URL Services 
 const SERVICE_A_WS_URL = process.env.MSA_WS_URL || 'ws://localhost:2121';
@@ -32,10 +30,6 @@ const SERVICE_C_WS_URL = process.env.MSC_WS_URL || 'ws://localhost:2323';
 ServiceC(SERVICE_C_WS_URL);
 const SERVICE_D_WS_URL = process.env.MSD_WS_URL || 'ws://localhost:2424';
 ServiceD(SERVICE_D_WS_URL);
-
-// Middleware:
-app.use(cors({ credentials: true, origin: FE_URL }));
-app.use(express.json());
 
 // MSA API Routes
 app.use("/api/baseStats_MSA", require("./routes/serviceARoutes"));

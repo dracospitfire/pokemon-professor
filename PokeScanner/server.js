@@ -1,6 +1,6 @@
 
 require('dotenv').config();
-const https = require("https");
+const http = require("http");
 const express = require("express");
 const cors = require("cors");
 
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 });
 
 // Create HTTP server and attach Express
-const server = https.createServer(app);
+const server = http.createServer(app);
 initializeWebSocket(server)
 
 server.listen(PORT, () => {
