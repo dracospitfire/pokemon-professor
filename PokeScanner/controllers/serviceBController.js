@@ -7,25 +7,18 @@ require("dotenv").config();
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-async function getBaseStats(name) {
-    console.log("Requested base stats for:", name);
-
+async function getBaseStats(name) {    
     try {
         const pokename = name.toLowerCase().trim();
-        console.log("Fetching from API:", `https://pokeapi.co/api/v2/pokemon/${pokename}`);
-
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
-
-        console.log("Fetch response:", res.status, res.statusText);
 
         if (!res.ok) {
             const errText = await res.text();
             console.error("API responded with error body:", errText);
             throw new Error(`Pokemon "${pokename}" not found (Status: ${res.status})`);
         }
-
+        
         const json = await res.json();
-        console.log("Fetched JSON:", JSON.stringify(json, null, 2).slice(0, 500), "...");
 
         const stats = {};
         json.stats.forEach(s => {
@@ -33,7 +26,6 @@ async function getBaseStats(name) {
             stats[key] = s.base_stat;
         });
 
-        console.log("Parsed base stats:", stats);
         return stats;
 
     } catch (err) {

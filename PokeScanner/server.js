@@ -23,7 +23,6 @@ app.use(express.json());
 
 //confirm backend is working
 app.get("/", (req, res) => {
-    console.log(req, "Received")
     res.send("Austin's Microservice B is running.");
 });
 
