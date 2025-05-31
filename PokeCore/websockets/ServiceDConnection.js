@@ -19,7 +19,7 @@ function connectWebSocket(url) {
             ws.send(JSON.stringify(requestMessage));
             console.log(`[${new Date().toISOString()}] Requested Bulbasaur baseStats`);
           }
-        }, 90 * 1000);
+        }, 60 * 1000);
     });
 
   ws.on("message", (data) => {

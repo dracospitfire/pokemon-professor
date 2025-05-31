@@ -19,7 +19,7 @@ function connectWebSocket(url) {
             ws.send(JSON.stringify(requestMessage));
             console.log(`[${new Date().toISOString()}] Requested Squirtle baseStats`);
           }
-        }, 90 * 1000);
+        }, 45 * 1000);
     });
 
   ws.on("message", (data) => {
