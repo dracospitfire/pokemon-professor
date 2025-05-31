@@ -16,6 +16,8 @@ const App = () => {
       import.meta.env.VITE_API_URL ?? "http://localhost:2020",
       import.meta.env.VITE_MSA_URL ?? "http://localhost:2121",
       import.meta.env.VITE_MSB_URL ?? "http://localhost:2222",
+      import.meta.env.VITE_MSC_URL ?? "http://localhost:2323",
+      import.meta.env.VITE_MSD_URL ?? "http://localhost:2424",
     ];
 
     const ping = () => {
