@@ -1,9 +1,9 @@
 // Load .env variables
 require("dotenv").config();
-const WebSocket = require("ws");
 
-// Establish WebSocket connection and retrieve pending requests from Service A
-const { getWS, getPendingRequests } = require("../websockets/ServiceAConnection");
+const WebSocket = require("ws");
+// Establish WebSocket connection and retrieve pending requests from Service D
+const { getWS, getPendingRequests } = require("../websockets/ServiceDConnection");
 
 // Establish Database connection and load db config
 // const db = require(process.env.DATABASE || "../database/my-config");
@@ -12,12 +12,12 @@ const { getWS, getPendingRequests } = require("../websockets/ServiceAConnection"
 const lodash = require("lodash");
 
 // Returns Pokemon base status
-const getBaseStats_MSA = async (req, res) => {
+const getBaseStats_MSD = async (req, res) => {
   const ws = getWS();
   const pendingRequests = getPendingRequests();
 
   if (ws.readyState !== WebSocket.OPEN) {
-    return res.status(503).json({ error: 'Service A WebSocket not connected' });
+    return res.status(503).json({ error: 'Service D WebSocket not connected' });
   }
 
   const name = req.params.name;
@@ -293,7 +293,7 @@ const deleteZone = async (req, res) => {
 
 // Export the functions as methods of an object
 module.exports = {
-  getBaseStats_MSA,
+  getBaseStats_MSD,
   getZoneList,
   getZonebyID,
   createZone,

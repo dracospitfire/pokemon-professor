@@ -8,18 +8,18 @@ function connectWebSocket(url) {
   ws = new WebSocket(url);
 
   ws.on("open", () => {
-      console.log("Connected to Service A WebSocket.");
-      // Request Pikachu's baseStats every 55 seconds
+      console.log("Connected to Service B WebSocket.");
+      // Request Charmander's baseStats every 10 seconds
       setInterval(() => {
           if (ws.readyState === WebSocket.OPEN) {
             const requestMessage = {
               type: "baseStats",
-              name: "Pikachu"
+              name: "Charmander"
             };
             ws.send(JSON.stringify(requestMessage));
-            console.log(`[${new Date().toISOString()}] Requested Pikachu baseStats`);
+            console.log(`[${new Date().toISOString()}] Requested Charmander baseStats`);
           }
-        }, 55 * 1000);
+        }, 10 * 1000);
     });
 
   ws.on("message", (data) => {
@@ -31,7 +31,7 @@ function connectWebSocket(url) {
         pendingRequests.get(requestId)(message);
         pendingRequests.delete(requestId);
       }
-      console.log("From Service A:", message);
+      console.log("From Service B:", message);
     } catch (err) {
       console.error("Failed to parse WebSocket message:", err);
     }

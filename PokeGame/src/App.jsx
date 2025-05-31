@@ -2,12 +2,12 @@ import "./App.css";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login.jsx"
-import StartGame from "./pages/Game";
-import MapsPage from "./pages/Maps";
-import HomePage from "./pages/Home";
-import AccountPage from "./pages/Account";
-import NewsPage from "./pages/News";
-import BlogPage from "./pages/Blog";
+import StartGame from "./pages/Game.jsx";
+import MapsPage from "./pages/Maps.jsx";
+import HomePage from "./pages/Home.jsx";
+import AccountPage from "./pages/Account.jsx";
+import NewsPage from "./pages/News.jsx";
+import BlogPage from "./pages/Blog.jsx";
 import axios from "axios";
 
 const App = () => {

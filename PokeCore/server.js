@@ -1,8 +1,11 @@
 require("dotenv").config();
-const { connectWebSocket } = require("./websockets/ServiceAConnection");
 const express = require("express");
-const WebSocket = require('ws');
 const cors = require("cors");
+
+const { connectWebSocket: ServiceA } = require("./websockets/ServiceAConnection");
+const { connectWebSocket: ServiceB } = require("./websockets/ServiceBConnection");
+const { connectWebSocket: ServiceC } = require("./websockets/ServiceCConnection");
+const { connectWebSocket: ServiceD } = require("./websockets/ServiceDConnection");
 
 // Declare the HOST variable
 const HOST = process.env.HOST || "localhost";
@@ -14,19 +17,34 @@ const PORT = process.env.PORT || 2020;
 // Declare the FE_URL variable
 const FE_URL = process.env.FE_URL || "http://localhost:3030"; 
 
-// Declare the MSA_URL variable
-const MSA_URL = process.env.MS_A_URL || "http://localhost:5050"; 
+// Declare the Microservice URL variables
+const MSA_URL = process.env.MSA_URL || "http://localhost:2121"; 
+const MSB_URL = process.env.MSB_URL || "http://localhost:2222";
+const MSC_URL = process.env.MSC_URL || "http://localhost:2323";
+const MSD_URL = process.env.MSD_URL || "http://localhost:2424";
 
-// Declare the WS_URL Service A
-const SERVICE_A_WS_URL = process.env.MS_A_WS_URL || 'ws://localhost:5050';
-connectWebSocket(SERVICE_A_WS_URL);
+// Declare the WebSocket URL Services 
+const SERVICE_A_WS_URL = process.env.MSA_WS_URL || 'ws://localhost:2121';
+ServiceA(SERVICE_A_WS_URL);
+const SERVICE_B_WS_URL = process.env.MSB_WS_URL || 'ws://localhost:2222';
+ServiceB(SERVICE_B_WS_URL);
+const SERVICE_C_WS_URL = process.env.MSC_WS_URL || 'ws://localhost:2323';
+ServiceC(SERVICE_C_WS_URL);
+const SERVICE_D_WS_URL = process.env.MSD_WS_URL || 'ws://localhost:2424';
+ServiceD(SERVICE_D_WS_URL);
 
 // Middleware:
 app.use(cors({ credentials: true, origin: FE_URL }));
 app.use(express.json());
 
-// API Routes
-app.use("/api/baseStats", require("./routes/serviceARoutes"));
+// MSA API Routes
+app.use("/api/baseStats_MSA", require("./routes/serviceARoutes"));
+// MSB API Routes
+app.use("/api/baseStats_MSB", require("./routes/serviceBRoutes"));
+// MSC API Routes
+app.use("/api/baseStats_MSC", require("./routes/serviceCRoutes"));
+// MCD API Routes
+app.use("/api/baseStats_MSD", require("./routes/serviceDRoutes"));
 
 // Adding "Help World" to base URL to confrim backend is working
 app.get("/", (req, res) => {
