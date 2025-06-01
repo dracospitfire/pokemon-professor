@@ -1,7 +1,9 @@
 import "./Game.css";
 import CSSwrapper from "../components/CSSwrapper";
 import { Suspense } from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../config/authprovider";
 import { Leva } from "leva";
 import { Preload } from "@react-three/drei";
 import { useProgress } from "@react-three/drei";
@@ -21,6 +23,15 @@ const keyboardMap = [
 ];
 
 function Game() {
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/login");
+    }
+  }, [user, loading, navigate]);
+
   useEffect(() => {
     const handleRightClick = (e) => {
           // e.preventDefault();

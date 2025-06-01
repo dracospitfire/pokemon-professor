@@ -1,7 +1,7 @@
 import "./Login.css";
 import CSSwrapper from "../components/CSSwrapper";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from '../config/supabase';
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
@@ -17,6 +17,16 @@ function LoginPage() {
     userEmail : '', 
     password  : '',
   });
+
+  useEffect(() => {
+    const signOutExistingUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session) {
+        await supabase.auth.signOut();
+      }
+    };
+    signOutExistingUser();
+  }, []);
 
   const handleSubmit = async (e) => {
       e.preventDefault();
@@ -36,9 +46,15 @@ function LoginPage() {
       setLoading(false);
 
       if (error) {
-        alert(`${error.message}, Please check your email to confirm your account.`);
+        if (error.message.includes("Email not confirmed")) {
+          alert(`${error.message}. Please verify your email before logging in.`);
+        } else if (error.message.includes("Invalid login credentials")) {
+          alert(`${error.message}. Please confirm your login information or create an account.`);
+        } else {
+          alert(`Login error: ${error.message}`);
+        }
       } else {
-        navigate("/welcome", { state: { user: userEmail } });
+        navigate("/welcome");
       }
   };
 

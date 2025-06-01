@@ -1,8 +1,13 @@
 import "./NavBar.css";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { useAuth } from "../../config/authprovider";
+import { supabase } from '../../config/supabase';
 import axios from "axios";
 
 const NavBar = () => {
+  const { user } = useAuth();
+  const [sliderValue, setSliderValue] = useState(100);
 
   const resetDatabase = async () => {
     try {
@@ -24,6 +29,11 @@ const NavBar = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.reload();
+  }
+
   return (
   <>
     <header className="head-nav">
@@ -33,12 +43,45 @@ const NavBar = () => {
           <span className="rest-tool-text">Let's Play</span>
         </Link>
       </div>
+      {user && (
+        <div className="professor-info">
+          <div className="slider-label">
+            <strong>Sign: Out</strong>
+          </div>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            defaultValue={100}
+            className="signout-slider"
+            onInput={(e) => setSliderValue(parseInt(e.target.value))}
+            onMouseUp={() => {
+              if (sliderValue === 0) {
+                handleSignOut();
+              } else {
+                setSliderValue(100);
+              }
+            }}
+            onTouchEnd={() => {
+              if (sliderValue === 0) {
+                handleSignOut();
+              } else {
+                setSliderValue(100);
+              }
+            }}
+          />
+          <div className="slider-label">
+            <strong>In the Lab</strong>
+          </div>
+        </div>
+      )}
       <nav className="internal-nav">
         <Link to="/">Home</Link>
-        |
-        <Link to="/login">Account</Link>
-        |
-        <Link to="/login">Game</Link>
+        |{user ? (
+        <Link to="/useraccount">Account</Link> ) : ( <Link to="/login">Account</Link> )}
+        |{user ? (
+        <Link to="/startgame">Game</Link> ) : ( <Link to="/login">Game</Link> )}
         |
         <Link to="/gamenews">News</Link>
         |

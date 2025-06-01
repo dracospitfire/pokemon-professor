@@ -22,6 +22,30 @@ header.head-nav .logo img {
   max-height: 32px;
 }
 
+header .professor-info {
+  display: flex;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: row;     
+  align-items: center;      
+  justify-content: center;    
+  text-align: center;
+  font-family: var(--Franky); 
+  font-size: 100%;
+  color: black;   
+}
+
+.professor-info button {
+  margin: 0%;
+}
+
+.professor-info .signout-slider {
+  width: 25%;
+  outline: none;
+  cursor: grab;
+}
+
 nav.internal-nav {
   padding: 2%;
   display: flex;
