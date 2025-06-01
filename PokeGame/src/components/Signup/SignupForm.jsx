@@ -1,6 +1,8 @@
 import "./SignupForm.css";
 import { useNavigate } from "react-router-dom";
+import { supabase } from '../../config/supabase';
 import { useState } from "react";
+
 import axios from "axios";
 
 const SignUp = ({ cancelForm }) => {
@@ -33,7 +35,7 @@ const SignUp = ({ cancelForm }) => {
       return;
     }
 
-    // Create a new Pokemon Gym object from the formData
+    // Create a new user profile object from the formData
     const newUser = {
       userFirstName: formData.userFirstName,
       userLastName : formData.userLastName,
@@ -45,24 +47,50 @@ const SignUp = ({ cancelForm }) => {
       state        : formData.state,
       zipcode      : formData.zipcode,
       userName     : formData.userName,
-      password     : formData.password,
     };
 
     try {
-      const URL = import.meta.env.VITE_API_URL + "newuser";
-      const response = await axios.post(URL, newUser);
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: formData.email,
+        password: formData.password,
+      });
 
-      if (response.status === 201) {
-        alert(response.data.message);
-        // Reset the form fields
-        resetFormFields();
-        navigate("/")
+      if (authError) {
+        alert("Signup failed: " + authError.message);
+        return;
       }
+
+      console.log("Signup success:", authData);
+      alert("Signup successful! Please check your email to confirm your account.");
+      
+      // const URL = import.meta.env.VITE_API_URL + "newuser";
+      // const response = await axios.post(URL, newUser);
+
+      // if (response.status === 201) {
+      //   alert(response.data.message);
+
+      //   const { data: authData, error: authError } = await supabase.auth.signUp({
+      //     email: formData.email,
+      //     password: formData.password,
+      //   });
+
+      //   if (authError) {
+      //     alert("Signup failed: " + authError.message);
+      //     return;
+      //   }
+
+      //   console.log("Signup success:", authData);
+      //   alert("Signup successful! Please check your email to confirm your account.");
+
+      //   // Reset the form fields
+      resetFormFields();
+      navigate("/");
+      // }
     } catch (err) {
       if (err.response) {
         // Backend Responses (300, 400, 404, 406, 500)
         alert(err.response.data.error);
-        navigate("/", { state: { pokemonGym: newUser } });
+        navigate("/", { state: { user: newUser } });
       } else {
         // No Response (Network error or CORS issue)
         alert("No response from server. Network error or CORS issue.");

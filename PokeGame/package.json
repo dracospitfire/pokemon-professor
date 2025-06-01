@@ -13,10 +13,12 @@
   },
   "contributors": [
     "Austin Flores <github.com/dracospitfire>"
-  ],  "dependencies": {
+  ],
+  "dependencies": {
     "@react-three/drei": "9.75.0",
     "@react-three/fiber": "8.13.3",
     "@react-three/rapier": "^1.4.0",
+    "@supabase/supabase-js": "^2.49.8",
     "axios": "^1.6.3",
     "framer-motion": "^12.10.4",
     "leva": "^0.9.35",

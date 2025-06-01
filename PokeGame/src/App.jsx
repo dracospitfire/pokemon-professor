@@ -1,13 +1,14 @@
 import "./App.css";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login.jsx"
-import StartGame from "./pages/Game.jsx";
-import MapsPage from "./pages/Maps.jsx";
-import HomePage from "./pages/Home.jsx";
-import AccountPage from "./pages/Account.jsx";
-import NewsPage from "./pages/News.jsx";
-import BlogPage from "./pages/Blog.jsx";
+import Login from "./pages/Login"
+import StartGame from "./pages/Game";
+import MapsPage from "./pages/Maps";
+import HomePage from "./pages/Home";
+import AccountPage from "./pages/Account";
+import WelcomePage from "./pages/Welcome";
+import NewsPage from "./pages/News";
+import BlogPage from "./pages/Blog";
 import axios from "axios";
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/useraccount" element={<AccountPage />} />
         <Route path="/startgame" element={<StartGame />} />
         <Route path="/maps" element={<MapsPage />} />
