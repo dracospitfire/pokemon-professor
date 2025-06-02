@@ -81,7 +81,7 @@ const NavBar = () => {
         |{user ? (
         <Link to="/useraccount">Account</Link> ) : ( <Link to="/login">Account</Link> )}
         |{user ? (
-        <Link to="/startgame">Game</Link> ) : ( <Link to="/login">Game</Link> )}
+        <Link to="/welcome">Game</Link> ) : ( <Link to="/login">Game</Link> )}
         |
         <Link to="/gamenews">News</Link>
         |

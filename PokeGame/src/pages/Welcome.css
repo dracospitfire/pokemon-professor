@@ -26,5 +26,131 @@ body.welcomepage::before {
 
 main {
   width: 90%;
-  justify-items: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.welcomeuser {
+  width: 75%;
+  min-width: 545px;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.user {
+  margin: 2%;
+  padding: 0%;
+  width: 100%;
+  min-width: 260px;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
+  border-radius: 0;
+}
+
+.useraccount {
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;          
+  justify-content: center; 
+  align-items: left;      
+  cursor: pointer;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid black;
+}
+
+.welcome-header {
+  font-size: 250%;
+  font-weight: bold;
+}
+
+.welcome-name {
+  font-size: 150%;
+}
+
+.stats {
+  margin: 2%;
+  padding: 0%;
+  padding-top:  1%;
+  padding-bottom: 1%;
+  width: 100%;
+  min-width: 260px;
+  border-radius: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  border-radius: 0;
+  border: 1px solid black;
+}
+
+.researcher-info {
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;          
+  justify-content: center;    
+  align-items: left;      
+}
+
+.researcher-info p {
+  margin: 1%;
+  padding: 0%;
+  padding-left: 2%;
+}
+
+.researcher {
+  width: 75%;
+  min-width: 545px;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: column;  
+}
+
+.researcher-tools {
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: row;     
+  align-items: center;      
+  justify-content: center;     
+}
+
+.tool {
+  margin: 2%;
+  padding: 5%;
+  width: 100%;
+  min-width: 260px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0;
+  border: 1px solid black;
+}
+
+.tool.active {
+  background-color: rgb(0, 85, 255, 0.8);
+  color: white;
+}
+
+.tool.disabled {
+  background-color: rgba(175, 175, 176, 0.4);
+  color: gainsboro;
+  cursor: not-allowed;
+}
+
+.button-header {
+  font-size: 130%;
+  font-weight: bold;
 }

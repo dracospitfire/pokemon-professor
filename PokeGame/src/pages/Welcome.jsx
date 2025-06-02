@@ -19,12 +19,48 @@ function WelcomePage() {
       <PokeballThrow />
       <NavBar />
       <main>
-        <h1>Welcome, {userName}!</h1>
-        <p>Ready to begin your Pokémon adventure?</p>
+        <h1>Pokémon Professor</h1>
+        <section className="welcomeuser">
+          <div className="user">
+            <button className="useraccount" onClick={() => navigate("/useraccount")}>
+              <span className="welcome-header"><strong>Welcome User</strong></span>
+              <span className="welcome-name">{user.email.split("@")[0]}</span>
+            </button>
+          </div>
+          <div className="stats">
+            <div className="researcher-info">
+              <p><strong>Professor Rank:</strong> New Researcher</p>
+              <p><strong>Active Since:</strong> March 2025</p>
+              <p><strong>Daily Submissions Logged:</strong> 37</p>
+              <p><strong>Most Common Type:</strong> Water</p>
+            </div>
+          </div>
+        </section>
+        <section className="researcher">
+          <div className="researcher-tools">
+            <button className="tool active">
+              <span className="button-header"><strong>Transporter Receiver</strong></span>
+            </button>
+            <button className="tool active">
+              <span className="button-header"><strong>Body Scanner</strong></span>
+            </button>
+          </div>  
+          <div className="researcher-tools">
+            <button className="tool disabled">
+              <span className="button-header"><strong>Medical Analyzer</strong></span>
+            </button>
+            <button className="tool disabled">
+              <span className="button-header"><strong>Phylogenetic Sequencer</strong></span>
+            </button>
+          </div>
+        </section>
         {!user && (
-          <button onClick={() => navigate("/login")} className="login-button">
-            Log In to Save Progress
-          </button>
+          <>
+            <p>Ready to begin your Pokémon adventure?</p>
+            <button onClick={() => navigate("/login")} className="login-button">
+              Log In to Save Progress
+            </button>
+          </>
         )}
       </main>
       <SocialBar />

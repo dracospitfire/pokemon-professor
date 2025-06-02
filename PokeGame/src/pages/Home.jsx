@@ -41,7 +41,6 @@ function HomePage() {
               {showFAQ ? "⬇" : "⬆"}
             </button>
           </article>
-
           <article className="faq-QA">
             {showFAQ && (
               <div className="faq-items">
