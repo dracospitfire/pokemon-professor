@@ -3,62 +3,25 @@ import CSSwrapper from "../components/CSSwrapper";
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../config/authprovider";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
-import assistant from "../assets/Images/icons/Assistant.svg";
 
-function WelcomePage() {
+function ScannerPage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
   if (loading) return <p>Loading...</p>;
 
   const userName = user?.email?.split("@")[0] ?? "Professor";
-
-  const handleNavigation = (e, path) => {
-    const isActive = e.currentTarget.classList.contains("active");
-    if (isActive) {
-      navigate(path);
-    }
-  };
-
-  const tbd = async () => {
-    try {
-      if (response.status === 200) {
-        alert(response.data.message);
-        
-      }
-    } catch (err) {
-      if (err.response) {
-        // Backend Responses (300, 400, 404, 406, 500)
-        alert(err.response.data.error);
-      } else {
-        // No Response (Network error or CORS issue)
-        alert("No response from server. Network error or CORS issue.");
-      }
-    }
-  };
-
   return (
     <>
       <CSSwrapper className="welcomepage" />
       <PokeballThrow />
       <NavBar />
       <main>
-        <div className="assistant">
-          <h1>Pokémon Professor</h1>
-          <div className="icon">
-            <Link to="/" className="icon-assistant" onClick={tbd}>
-              <img src={assistant} alt="take notes" className="assistant-icon" />
-              <span className="icon-assistant-text">
-                <strong>Amy Lupin</strong> - Lab Assistant<br />
-                <strong>Notes:</strong> Professor has not been to the lab in a 4 days and has miss the chance to see some rare Pokémon.</span>
-            </Link>
-          </div>
-        </div>
+        <h1>Pokémon Professor</h1>
         <section className="welcomeuser">
           <div className="user">
             <button className="useraccount" onClick={() => navigate("/useraccount")}>
@@ -77,26 +40,18 @@ function WelcomePage() {
         </section>
         <section className="researcher">
           <div className="researcher-tools">
-            <button
-              className="tool active"
-              onClick={(e) => handleNavigation(e, "/transporter")} >
+            <button className="tool active">
               <span className="button-header"><strong>Transporter Receiver</strong></span>
             </button>
-            <button
-              className="tool active"
-              onClick={(e) => handleNavigation(e, "/scanner")} >
+            <button className="tool active">
               <span className="button-header"><strong>Body Scanner</strong></span>
             </button>
-          </div>
+          </div>  
           <div className="researcher-tools">
-            <button
-              className="tool disabled"
-              onClick={(e) => handleNavigation(e, "/analyzer")} >
+            <button className="tool disabled">
               <span className="button-header"><strong>Medical Analyzer</strong></span>
             </button>
-            <button
-              className="tool disabled"
-              onClick={(e) => handleNavigation(e, "/sequencer")} >
+            <button className="tool disabled">
               <span className="button-header"><strong>Phylogenetic Sequencer</strong></span>
             </button>
           </div>
@@ -122,4 +77,4 @@ function WelcomePage() {
   );
 }
 
-export default WelcomePage;
+export default ScannerPage;

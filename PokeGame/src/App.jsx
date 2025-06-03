@@ -3,6 +3,10 @@ import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from "./pages/Login"
 import StartGame from "./pages/Game";
+import Transporter from "./pages/TransReceiver";
+import Scanner from "./pages/BodyScanner";
+import Analyzer from "./pages/MediAnalyzer";
+import Sequencer from "./pages/PolySequencer";
 import MapsPage from "./pages/Maps";
 import HomePage from "./pages/Home";
 import AccountPage from "./pages/Account";
@@ -48,9 +52,14 @@ const App = () => {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/useraccount" element={<AccountPage />} />
         <Route path="/startgame" element={<StartGame />} />
+        <Route path="/transporter" element={<Transporter />} />
+        <Route path="/scanner" element={<Scanner />} />
+        <Route path="/analyzer" element={<Analyzer />} />
+        <Route path="/sequencer" element={<Sequencer />} />
         <Route path="/maps" element={<MapsPage />} />
         <Route path="/gamenews" element={<NewsPage />} />
         <Route path="/companyblog" element={<BlogPage />} />
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </>
     

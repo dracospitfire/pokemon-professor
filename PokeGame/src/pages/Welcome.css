@@ -32,6 +32,66 @@ main {
   align-items: center;
 }
 
+.assistant {
+  margin: 0%;
+  padding: 0%;
+  width: 100%;
+  height: 100%;
+  gap: 5%;
+  display: flex;
+  flex-direction: row;          
+  justify-content: center;
+}
+
+.icon-assistant {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-assistant-text {
+  visibility: hidden;
+  background-color: white;
+  color: black;
+  text-align: left;
+  padding: 18px 12px;
+  border-radius: 15px;
+  line-height: 1.5;
+  position: absolute;
+  bottom: 80%;
+  left: 170%;
+  font-family: var(--Franky);
+  font-weight: normal;
+  transform: translateX(-50%);
+  width: 250px;
+  max-width: 300px;       
+  white-space: normal;     
+  word-wrap: break-word;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.icon-assistant-text::after {                                                           
+  content: "";                                                                     /* This is for the triangle under the bubble */
+  position: absolute;
+  top: 100%;
+  left: 11%; 
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;                       /* This makes it point to the right */
+}
+
+.icon-assistant:hover .icon-assistant-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.assistant-icon {
+  width: 90px;         
+  height: auto;         
+  object-fit: contain;
+}
+
 .welcomeuser {
   width: 75%;
   min-width: 545px;
@@ -80,12 +140,15 @@ main {
 }
 
 .stats {
+  width: 100%;
   margin: 2%;
   padding: 0%;
   padding-top:  1%;
   padding-bottom: 1%;
-  width: 100%;
   min-width: 260px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   border-radius: 0;
   background-color: rgba(255, 255, 255, 0.7);
   cursor: pointer;
@@ -97,7 +160,7 @@ main {
   margin: 0%;
   padding: 0%;
   width: 100%;
-  min-width: 260px;
+  min-width: 200px;
   display: flex;
   flex-direction: column;          
   justify-content: center;    
@@ -150,7 +213,9 @@ main {
   background-color: rgba(175, 175, 176, 0.4);
   color: gainsboro;
   cursor: not-allowed;
+  pointer-events: auto;
 }
+
 
 .button-header {
   font-size: 130%;
