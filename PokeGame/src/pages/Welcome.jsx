@@ -6,6 +6,8 @@ import SocialBar from "../components/Navigation/SocialBar";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../config/authprovider";
 
+import shoesteps from "../assets/Images/icons/Shoe.svg";
+
 function WelcomePage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
@@ -53,6 +55,13 @@ function WelcomePage() {
               <span className="button-header"><strong>Phylogenetic Sequencer</strong></span>
             </button>
           </div>
+          <button className="footstep-button" onClick={() => navigate("/startgame")}>
+            <span className="side-text left"><strong>Walk the Grounds</strong></span>
+            <div className="image-wrapper">
+              <img src={shoesteps} alt="Walk to start game" className="footstep-icon" />
+            </div>
+            <span className="side-text right"><strong>Explore the Lab</strong></span>
+          </button>
         </section>
         {!user && (
           <>

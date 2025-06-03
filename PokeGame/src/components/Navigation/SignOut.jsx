@@ -5,8 +5,11 @@ export const SignOutControls = () => {
   const navigate = useNavigate();
 
   useControls("Exit", {
+    "Main Menu": button(() => {
+      navigate("/welcome");
+    }),
     "Sign Out": button(() => {
-      navigate("/");
+      navigate("/login");
     }),
     AutoSave: {
       options: ["On", "Off"],

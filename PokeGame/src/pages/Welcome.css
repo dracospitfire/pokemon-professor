@@ -63,7 +63,7 @@ main {
   display: flex;
   flex-direction: column;          
   justify-content: center; 
-  align-items: left;      
+  align-items: center;     
   cursor: pointer;
   border-radius: 0;
   background-color: rgba(255, 255, 255, 0.7);
@@ -111,15 +111,17 @@ main {
 }
 
 .researcher {
-  width: 75%;
+  width: 100%;
   min-width: 545px;
   margin: 0%;
   padding: 0%;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column; 
+  align-items: center;      
 }
 
 .researcher-tools {
+  width: 75%;
   margin: 0%;
   padding: 0%;
   display: flex;
@@ -153,4 +155,30 @@ main {
 .button-header {
   font-size: 130%;
   font-weight: bold;
+}
+
+.footstep-button {
+  width: 72%;
+  height: 100%;
+  padding: 1%;
+  display: grid;
+  grid-template-columns: 40% auto 40%;
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.side-text {
+  margin: 0%;
+  padding: 0%;
+  font-size: 200%;
+  font-weight: bold;
+  text-align: center;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
