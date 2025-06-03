@@ -1,6 +1,6 @@
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
-import professorOak from "../../assets/Models/pokemon_professor_oak.glb";
+import professorOak from "../../assets/Models/professor_oak.glb";
 
 useGLTF.preload(professorOak)
 
