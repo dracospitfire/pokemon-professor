@@ -70,3 +70,84 @@ main {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1px solid black;
 }
+
+.open-chest {
+  margin: 0%;
+  width: 50%; 
+  height: 180px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 0%;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;     
+  justify-content: center;    
+  align-items: center;        
+  text-align: center;       
+  white-space: normal; 
+}
+
+.pokemon-reward {
+  margin: 0%;
+  padding: 0%;
+  width: 50%; 
+  height: 250px;
+  background: rgba(255, 255, 255, 0.75);
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;     
+  justify-content: center;    
+  align-items: center;        
+  text-align: center;       
+  white-space: normal; 
+}
+
+.pokemon-stats {
+  margin: 2%;
+  width: auto;
+  height: 250px;  
+  padding: 0%;   
+  overflow-y: auto;
+}
+
+.pokemon-stats ul {
+  list-style-type: none;
+  margin: 0%;
+  padding: 0%;
+  padding-top: 4%;
+  padding-bottom: 1%;
+}
+
+.pokemon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.researcher {
+  width: 100%;
+  min-width: 545px;
+  margin: 0%;
+  padding: 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center;           
+}
+
+.footstep-button {
+  width: 72%;
+  height: 100%;
+  margin: 2%;
+  padding: 0%;
+  display: grid;
+  grid-template-columns: 40% auto 40%;
+  background-color: rgba(255, 255, 255, 0.7);
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+}

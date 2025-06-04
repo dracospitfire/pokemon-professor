@@ -1,6 +1,7 @@
 import "./TransReceiver.css";
 import axios from "axios";
-import { useState } from "react";
+import { useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../config/authprovider";
 import CSSwrapper from "../components/CSSwrapper";
@@ -18,7 +19,7 @@ function TransporterPage() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
-  if (loading) return <p>Loading...</p>;
+  const lastTap = useRef(0)
 
   const userName = user?.email?.split("@")[0] ?? "Professor";
 
@@ -43,6 +44,42 @@ function TransporterPage() {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key.toLowerCase() === "r" && !chestOpened) {
+        fetchDailyPokemon();
+      }
+    };
+
+    const handleDoubleTap = () => {
+      const now = Date.now();
+      const doubleTap = now - lastTap.current;
+      if (doubleTap < 300 && !chestOpened) {
+        fetchDailyPokemon();
+        }
+        lastTap.current = now;
+      }
+
+    const handleDoubleClick = () => {
+      if (!chestOpened) {
+        fetchDailyPokemon();
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);            // Keyboard Input
+    document.addEventListener("touchend", handleDoubleTap);       // Mobile Touch
+    document.addEventListener("dblclick", handleDoubleClick);     // Mouse Click
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);        // Keyboard Input
+      document.removeEventListener("touchend", handleDoubleTap);   // Mobile Touch
+      document.removeEventListener("dblclick", handleDoubleClick); // Mouse Click
+    };
+
+  }, [chestOpened]);
+
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
       <CSSwrapper className="transporter" />
@@ -52,21 +89,20 @@ function TransporterPage() {
         <h1>Transporter Receiver</h1>
         <section className="transReceiver">
           <div className="user">
-            <button className="receiver" onClick={fetchDailyPokemon}>
+            <div className="receiver">
               <span className="receiver-header"><strong>Daily Pokemon Transfer</strong></span>
-            </button>
+            </div>
           </div>
         </section>
         <>
-        [TO DO]: When button receiver is clicked we want to fetchDailyPokemon if daily pokmeon succefully returns data when want to set chest to open and display pokemon data from backend. 
         <div className={chestOpened ? "pokemon-reward" : "open-chest"} >
           {chestOpened ? (
             <div className="pokemon-stats">
-              <h2 className="recieved">You recieved, Pikachu!</h2>
+              <h2 className="recieved">You recieved, {dailyPokemon.name}</h2>
               <button onClick={() => navigate('/maps')} className="pokemon-button">
-                <img src={Pikachu} alt="Pikachu" width={100} height={100} />
+                <img src={dailyPokemon.image} alt="Pikachu" width={200} height={200} />
               </button>
-              <br></br><strong>Trainer: </strong>Ash Katchum
+              <br></br><strong>Trainer: </strong>{userName}
               <ul>
                 <li><strong>Type:</strong> {dailyPokemon.type}</li>
                 <li><strong>HP:</strong> {dailyPokemon.hp}</li>
@@ -78,13 +114,13 @@ function TransporterPage() {
               </ul>
               </div>
           ) : (
-            <>
+            <div className="click-to-receive" onClick={fetchDailyPokemon}>
               <div>Receive Pokémon</div>
               <br />
               <div>Press [R]</div>
               <div>or</div>
               <div>Double Tap</div>
-            </>
+            </div>
           )}
         </div>
         </>
