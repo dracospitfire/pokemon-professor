@@ -44,7 +44,7 @@ function AnalyzerPage() {
               <span className="button-header"><strong>Transporter Receiver</strong></span>
             </button>
             <button className="tool active">
-              <span className="button-header"><strong>Body Scanner</strong></span>
+              <span className="button-header"><strong>Computed Scanner</strong></span>
             </button>
           </div>  
           <div className="researcher-tools">

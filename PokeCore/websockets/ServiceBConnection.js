@@ -10,16 +10,16 @@ function connectWebSocket(url) {
   ws.on("open", () => {
       console.log("Connected to Service B WebSocket.");
       // Request Charmander's baseStats every 50 seconds
-      setInterval(() => {
-          if (ws.readyState === WebSocket.OPEN) {
-            const requestMessage = {
-              type: "baseStats",
-              name: "Charmander"
-            };
-            ws.send(JSON.stringify(requestMessage));
-            console.log(`[${new Date().toISOString()}] Requested Charmander baseStats`);
-          }
-        }, 50 * 1000);
+      // setInterval(() => {
+      //     if (ws.readyState === WebSocket.OPEN) {
+      //       const requestMessage = {
+      //         type: "baseStats",
+      //         name: "Charmander"
+      //       };
+      //       ws.send(JSON.stringify(requestMessage));
+      //       console.log(`[${new Date().toISOString()}] Requested Charmander baseStats`);
+      //     }
+      //   }, 50 * 1000);
     });
 
   ws.on("message", (data) => {

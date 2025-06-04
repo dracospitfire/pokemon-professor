@@ -85,17 +85,17 @@ function WelcomePage() {
             <button
               className="tool active"
               onClick={(e) => handleNavigation(e, "/scanner")} >
-              <span className="button-header"><strong>Body Scanner</strong></span>
+              <span className="button-header"><strong>Computed Scanner</strong></span>
             </button>
           </div>
           <div className="researcher-tools">
             <button
-              className="tool disabled"
+              className="tool active"
               onClick={(e) => handleNavigation(e, "/analyzer")} >
               <span className="button-header"><strong>Medical Analyzer</strong></span>
             </button>
             <button
-              className="tool disabled"
+              className="tool active"
               onClick={(e) => handleNavigation(e, "/sequencer")} >
               <span className="button-header"><strong>Phylogenetic Sequencer</strong></span>
             </button>
@@ -112,7 +112,7 @@ function WelcomePage() {
           <>
             <p>Ready to begin your Pokémon adventure?</p>
             <button onClick={() => navigate("/login")} className="login-button">
-              Log In to Save Progress
+              Log in to get started.
             </button>
           </>
         )}

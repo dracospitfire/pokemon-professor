@@ -21,7 +21,7 @@ function SequencerPage() {
       <PokeballThrow />
       <NavBar />
       <main>
-        <h1>Pokémon Professor</h1>
+        <h1>Phylogenetic Sequencer</h1>
         <section className="welcomeuser">
           <div className="user">
             <button className="useraccount" onClick={() => navigate("/useraccount")}>

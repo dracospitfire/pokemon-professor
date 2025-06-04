@@ -110,7 +110,7 @@ export const CharacterController = ({ chestRef, onChestOpen }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);        // Keyboard Input
       document.removeEventListener("touchend", handleDoubleTap);   // Mobile Touch
-      document.removeEventListener("dblclick", handleDoubleClick); //Mouse Click
+      document.removeEventListener("dblclick", handleDoubleClick); // Mouse Click
     };
 
   }, [isNearChest, onChestOpen, chestOpened]);

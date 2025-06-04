@@ -21,7 +21,7 @@ function ScannerPage() {
       <PokeballThrow />
       <NavBar />
       <main>
-        <h1>Pokémon Professor</h1>
+        <h1>Computed Scanner</h1>
         <section className="welcomeuser">
           <div className="user">
             <button className="useraccount" onClick={() => navigate("/useraccount")}>
