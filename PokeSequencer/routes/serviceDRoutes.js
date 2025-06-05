@@ -1,11 +1,11 @@
 const {
-    getBaseStats,
+    getEvoStats,
     getHoldItems,
     getEVProfile,
 } = require("../controllers/serviceDController");
 
-async function fetchgetBaseStats(name) {
-    return await getBaseStats(name);
+async function fetchgetEvoStats(name) {
+    return await getEvoStats(name);
 }
 
 function fetchgetHoldItems(name, battleType) {
@@ -17,7 +17,7 @@ async function fetchgetEVProfile(name) {
 }
 
 module.exports = {
-    fetchgetBaseStats,
+    fetchgetEvoStats,
     fetchgetHoldItems,
     fetchgetEVProfile
 };

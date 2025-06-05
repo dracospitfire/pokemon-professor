@@ -20,11 +20,7 @@ function ScannerPage() {
   const scanPokemon1 = useRef('');
   const scanPokemon2 = useRef('');
 
-  const [pokemon1, setPokemon1] = useState({
-    scanPokemon : '', 
-  });
-
-  const [pokemon2, setPokemon2] = useState({
+  const [pokemon, setPokemon] = useState({
     scanPokemon : '', 
   });
   
@@ -143,19 +139,10 @@ function ScannerPage() {
 
   }, [chest1Opened, chest2Opened]);
 
-  const handlePokemonChange1 = (e) => {
+  const handlePokemonChange = (e) => {
     const { name, value } = e.target;
     scanPokemon1.current = value;
-    setPokemon1((prevData) => ({
-    ...prevData,
-    [name]: value,
-  }));
-  };
-
-  const handlePokemonChange2 = (e) => {
-    const { name, value } = e.target;
-    scanPokemon2.current = value;
-    setPokemon2((prevData) => ({
+    setPokemon((prevData) => ({
     ...prevData,
     [name]: value,
   }));
@@ -182,8 +169,8 @@ function ScannerPage() {
             <label htmlFor="pokeBody"><strong>Pokemon: </strong></label>
             <select
               name="scanPokemon"
-              value={pokemon1.scanPokemon}
-              onChange={handlePokemonChange1}
+              value={pokemon.scanPokemon}
+              onChange={handlePokemonChange}
               required
             >
               <option value=""></option>
@@ -216,7 +203,7 @@ function ScannerPage() {
             <div className="pokemon-scan">
               <h2 className="recieved">You recieved, {pokeBody1.name}</h2>
               <button onClick={() => navigate('/maps')} className="pokemon-button">
-                <img src={pokeBody1.image} alt="Pikachu" width={200} height={200} style={{ filter: "brightness(0%)" }} />
+                <img src={pokeBody1.image} alt="Pikachu" width={200} height={200} />
               </button>
               <br></br><strong>Trainer: </strong>{userName}
               <ul>
@@ -244,7 +231,7 @@ function ScannerPage() {
             <div className="pokemon-scan">
               <h2 className="recieved">You recieved, {pokeBody2.name}</h2>
               <button onClick={() => navigate('/maps')} className="pokemon-button">
-                <img src={pokeBody2.image} alt="Pikachu" width={200} height={200} style={{ filter: "brightness(0%)" }} />
+                <img src={pokeBody2.image} alt="Pikachu" width={200} height={200} />
               </button>
               <br></br><strong>Trainer: </strong>{userName}
               <ul>
@@ -269,7 +256,7 @@ function ScannerPage() {
           </div>
         </div>
         <div className="reset-scan" >
-          <button onClick={() => { setChest1Opened(false); pokemon1.scanPokemon = ''; scanPokemon1.current = '';}} className="pokemon1-clear">
+          <button onClick={() => { setChest1Opened(false); setPokemon({ scanPokemon: '' }); scanPokemon1.current = '';}} className="pokemon1-clear">
             <span className="pokemon1-text"><strong>Clear</strong></span>
           </button>
         </div>
