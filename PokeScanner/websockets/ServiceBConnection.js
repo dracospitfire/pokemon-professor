@@ -24,7 +24,7 @@ function initializeWebSocket(server) {
             }
 
             const { type, requestId, name, battleType } = request;
-
+            console.log(type);
             switch (type) {
                 case 'pokeScan':
                     try {

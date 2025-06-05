@@ -1,60 +1,129 @@
-import "./Welcome.css";
+import "./PolySequencer.css";
+import axios from "axios";
+import { useRef } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../config/authprovider";
 import CSSwrapper from "../components/CSSwrapper";
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../config/authprovider";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
 
-function SequencerPage() {
+function AnalyzerPage() {
+  const [chestOpened, setChestOpened] = useState(false); 
+  const [ dailyPokemon, setDailyPokemon] = useState([]);
+  
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
-  if (loading) return <p>Loading...</p>;
+  const lastTap = useRef(0)
 
   const userName = user?.email?.split("@")[0] ?? "Professor";
+
+  const fetchDailyPokemon = async () => {
+    try {
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const URL = import.meta.env.VITE_API_URL + "/api/baseStats_MSA/" + randomNumber;
+      const response = await axios.get(URL);
+      const pokemon = response.data?.data;
+      console.log(response)
+      console.log("button pressed");
+      if (pokemon) {
+        setDailyPokemon(pokemon);
+        setChestOpened(true);
+      } else {
+        alert("No valid Pokémon received.");
+        console.warn("Invalid data:", pokemon);
+      }
+    } catch (error) {
+      alert("Error fetching daily Pokémon from the server.");
+      console.error("Error fetching DailyPokemon:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key.toLowerCase() === "r" && !chestOpened) {
+        fetchDailyPokemon();
+      }
+    };
+
+    const handleDoubleTap = () => {
+      const now = Date.now();
+      const doubleTap = now - lastTap.current;
+      if (doubleTap < 300 && !chestOpened) {
+        fetchDailyPokemon();
+        }
+        lastTap.current = now;
+      }
+
+    const handleDoubleClick = () => {
+      if (!chestOpened) {
+        fetchDailyPokemon();
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);            // Keyboard Input
+    document.addEventListener("touchend", handleDoubleTap);       // Mobile Touch
+    document.addEventListener("dblclick", handleDoubleClick);     // Mouse Click
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);        // Keyboard Input
+      document.removeEventListener("touchend", handleDoubleTap);   // Mobile Touch
+      document.removeEventListener("dblclick", handleDoubleClick); // Mouse Click
+    };
+
+  }, [chestOpened]);
+
+  if (loading) return <p>Loading...</p>;
+
   return (
     <>
-      <CSSwrapper className="welcomepage" />
+      <CSSwrapper className="sequencer" />
       <PokeballThrow />
       <NavBar />
       <main>
         <h1>Phylogenetic Sequencer</h1>
-        <section className="welcomeuser">
+        <section className="mediAnalyzer">
           <div className="user">
-            <button className="useraccount" onClick={() => navigate("/useraccount")}>
-              <span className="welcome-header"><strong>Welcome User</strong></span>
-              <span className="welcome-name">{user.email.split("@")[0]}</span>
-            </button>
-          </div>
-          <div className="stats">
-            <div className="researcher-info">
-              <p><strong>Professor Rank:</strong> New Researcher</p>
-              <p><strong>Active Since:</strong> March 2025</p>
-              <p><strong>Daily Submissions Logged:</strong> 37</p>
-              <p><strong>Most Common Type:</strong> Water</p>
+            <div className="medical">
+              <span className="medical-header"><strong>Evolution Chain Matrixs </strong></span>
             </div>
           </div>
         </section>
+        <>
+        <div className={chestOpened ? "pokemon-reward" : "open-chest"} >
+          {chestOpened ? (
+            <div className="pokemon-stats">
+              <h2 className="recieved">You recieved, {dailyPokemon.name}</h2>
+              <button onClick={() => navigate('/maps')} className="pokemon-button">
+                <img src={dailyPokemon.image} alt="Pikachu" width={200} height={200} />
+              </button>
+              <br></br><strong>Trainer: </strong>{userName}
+              <ul>
+                <li><strong>Type:</strong> {dailyPokemon.type}</li>
+                <li><strong>HP:</strong> {dailyPokemon.hp}</li>
+                <li><strong>Attack:</strong> {dailyPokemon.attack}</li>
+                <li><strong>Defense:</strong> {dailyPokemon.defense}</li>
+                <li><strong>Speed:</strong> {dailyPokemon.speed}</li>
+                <li><strong>Special Attack:</strong> {dailyPokemon.special_attack}</li>
+                <li><strong>Special Defense:</strong> {dailyPokemon.special_defense}</li>
+              </ul>
+              </div>
+          ) : (
+            <div className="click-to-receive" onClick={fetchDailyPokemon}>
+              <div>Receive Pokémon</div>
+              <br />
+              <div>Press [R]</div>
+              <div>or</div>
+              <div>Double Tap</div>
+            </div>
+          )}
+        </div>
+        </>
         <section className="researcher">
-          <div className="researcher-tools">
-            <button className="tool active">
-              <span className="button-header"><strong>Transporter Receiver</strong></span>
-            </button>
-            <button className="tool active">
-              <span className="button-header"><strong>Body Scanner</strong></span>
-            </button>
-          </div>  
-          <div className="researcher-tools">
-            <button className="tool disabled">
-              <span className="button-header"><strong>Medical Analyzer</strong></span>
-            </button>
-            <button className="tool disabled">
-              <span className="button-header"><strong>Phylogenetic Sequencer</strong></span>
-            </button>
-          </div>
           <button className="footstep-button" onClick={() => navigate("/startgame")}>
             <span className="side-text left"><strong>Walk the Grounds</strong></span>
             <div className="image-wrapper">
@@ -67,7 +136,7 @@ function SequencerPage() {
           <>
             <p>Ready to begin your Pokémon adventure?</p>
             <button onClick={() => navigate("/login")} className="login-button">
-              Log In to Save Progress
+              Log in to get started.
             </button>
           </>
         )}
@@ -77,4 +146,4 @@ function SequencerPage() {
   );
 }
 
-export default SequencerPage;
+export default AnalyzerPage;
