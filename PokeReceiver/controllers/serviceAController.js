@@ -27,11 +27,14 @@ async function getBaseStats(name) {
             stats[key] = s.base_stat;
         });
 
-        // Add name, type, and official artwork image
-        const nameFormatted = json.name;
-        const type = json.types[0]?.type?.name || "unknown";
-        const image = json.sprites?.other?.["official-artwork"]?.front_default || "";
+        // Capitalize first letter of name and type
+        const capitalize = str => str.charAt(0).toUpperCase() + str.slice(1);
 
+        // Add name, type, and official artwork image
+        const nameFormatted = capitalize(json.name);
+        const type = capitalize(json.types[0]?.type?.name || "unknown");
+        const image = json.sprites?.other?.["official-artwork"]?.front_default || "";
+        
         return {
             name: nameFormatted,
             type,

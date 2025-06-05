@@ -13,7 +13,6 @@ const lodash = require("lodash");
 
 // Returns Pokemon base status
 const getBaseStats_MSA = async (req, res) => {
-  console.log(req)
   const ws = getWS();
   const pendingRequests = getPendingRequests();
 
