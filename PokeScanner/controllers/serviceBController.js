@@ -7,7 +7,7 @@ require("dotenv").config();
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-async function getPokeBoday(name) {    
+async function getPokeBody(name) {    
     try {
         const pokename = name.toLowerCase().trim();
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokename}`);
@@ -71,7 +71,7 @@ async function getEVProfile(name) {
 
 // Export the functions as methods of an object
 module.exports = {
-    getPokeBoday,
+    getPokeBody,
     getHoldItems,
     getEVProfile,
 };

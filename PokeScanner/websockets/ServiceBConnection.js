@@ -2,7 +2,7 @@
 const WebSocket = require("ws");
 
 const { 
-    fetchgetPokeBoday,
+    fetchgetPokeBody,
     fetchgetHoldItems,
     fetchgetEVProfile,
 
@@ -26,9 +26,9 @@ function initializeWebSocket(server) {
             const { type, requestId, name, battleType } = request;
 
             switch (type) {
-                case 'baseStats':
+                case 'pokeScan':
                     try {
-                        const data = await fetchgetPokeBoday(name);
+                        const data = await fetchgetPokeBody(name);
                         ws.send(JSON.stringify({ requestId, type: 'baseStatsResponse', name, data }));
                     } catch (err) {
                         ws.send(JSON.stringify({ requestId, type: 'error', message: err.message }));

@@ -34,7 +34,7 @@ ServiceD(SERVICE_D_WS_URL);
 // MSA API Routes
 app.use("/api/baseStats_MSA", require("./routes/serviceARoutes"));
 // MSB API Routes
-app.use("/api/baseStats_MSB", require("./routes/serviceBRoutes"));
+app.use("/api/getPokeBody_MSB", require("./routes/serviceBRoutes"));
 // MSC API Routes
 app.use("/api/baseStats_MSC", require("./routes/serviceCRoutes"));
 // MCD API Routes

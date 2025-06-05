@@ -1,11 +1,11 @@
 const {
-    getPokeBoday,
+    getPokeBody,
     getHoldItems,
     getEVProfile,
 } = require("../controllers/serviceBController");
 
-async function fetchgetPokeBoday(name) {
-    return await getPokeBoday(name);
+async function fetchgetPokeBody(name) {
+    return await getPokeBody(name);
 }
 
 function fetchgetHoldItems(name, battleType) {
@@ -17,7 +17,7 @@ async function fetchgetEVProfile(name) {
 }
 
 module.exports = {
-    fetchgetPokeBoday,
+    fetchgetPokeBody,
     fetchgetHoldItems,
     fetchgetEVProfile
 };

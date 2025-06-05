@@ -11,8 +11,8 @@ const { getWS, getPendingRequests } = require("../websockets/ServiceBConnection"
 // Util to deep-compare two objects
 const lodash = require("lodash");
 
-// Returns Pokemon base status
-const getBaseStats_MSB = async (req, res) => {
+// Returns Pokemon
+const getPokeBody_MSB = async (req, res) => {
   const ws = getWS();
   const pendingRequests = getPendingRequests();
 
@@ -25,7 +25,7 @@ const getBaseStats_MSB = async (req, res) => {
 
   // Send request to WebSocket server
   const requestPayload = JSON.stringify({
-    type: 'baseStats',
+    type: 'pokeScan',
     requestId,
     name,
   });
@@ -293,7 +293,7 @@ const deleteZone = async (req, res) => {
 
 // Export the functions as methods of an object
 module.exports = {
-  getBaseStats_MSB,
+  getPokeBody_MSB,
   getZoneList,
   getZonebyID,
   createZone,
