@@ -25,7 +25,7 @@ const getBaseStats_MSD = async (req, res) => {
 
   // Send request to WebSocket server
   const requestPayload = JSON.stringify({
-    type: 'baseStats',
+    type: 'evoChain',
     requestId,
     name,
   });
