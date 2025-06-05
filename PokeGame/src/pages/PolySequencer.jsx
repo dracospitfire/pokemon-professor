@@ -17,8 +17,7 @@ function ScannerPage() {
   const [ pokeBody1, setpokeBody1] = useState([]);
   const [ pokeBody2, setpokeBody2] = useState([]);
 
-  const scanPokemon1 = useRef('');
-  const scanPokemon2 = useRef('');
+  const evoPokemon = useRef('');
 
   const [pokemon, setPokemon] = useState({
     scanPokemon : '', 
@@ -34,15 +33,15 @@ function ScannerPage() {
   const fetchPokemon1 = async (e) => {
     // // Prevent page reload
     // e.preventDefault();
-    const name = scanPokemon1.current.trim().toLowerCase();
-    if (!name) {
+    const pokedexId = Number(evoPokemon.current);
+    if (!pokedexId) {
       alert("Please select Pokémon #1 before scanning.");
       return;
     }
 
     try {
-      const name = scanPokemon1.current.trim().toLowerCase();
-      const URL = import.meta.env.VITE_API_URL + "/api/evoChain_MSD/" + name;
+      const pokedexId = Number(evoPokemon.current);
+      const URL = import.meta.env.VITE_API_URL + "/api/evoChain_MSD/" + pokedexId;
       const response = await axios.get(URL);
       const pokemon = response.data?.data;
       console.log(response)
@@ -66,15 +65,15 @@ function ScannerPage() {
     // // Prevent page reload
     // e.preventDefault();
 
-    const name = scanPokemon2.current.trim().toLowerCase();
-    if (!name) {
+    const pokedexId = Number(evoPokemon.current) + 1
+    if (!pokedexId) {
       alert("Please select Pokémon #2 before scanning.");
       return;
     }
 
     try {
-      const name = scanPokemon2.current.trim().toLowerCase();
-      const URL = import.meta.env.VITE_API_URL + "/api/evoChain_MSD/" + name;
+      const pokedexId = Number(evoPokemon.current) + 1
+      const URL = import.meta.env.VITE_API_URL + "/api/evoChain_MSD/" + pokedexId;
       const response = await axios.get(URL);
       const pokemon = response.data?.data;
       console.log(response)
@@ -141,7 +140,7 @@ function ScannerPage() {
 
   const handlePokemonChange = (e) => {
     const { name, value } = e.target;
-    scanPokemon1.current = value;
+    evoPokemon.current = value;
     setPokemon((prevData) => ({
     ...prevData,
     [name]: value,
@@ -174,26 +173,26 @@ function ScannerPage() {
               required
             >
               <option value=""></option>
-              <option value="Doduo">Doduo</option>             
-              <option value="Ponyta">Ponyta</option>           
-              <option value="Growlithe">Growlithe</option>     
-              <option value="Voltorb">Voltorb</option>      
-              <option value="Grimer">Grimer</option>             
-              <option value="Koffing">Koffing</option>           
-              <option value="Seel">Seel</option>                 
-              <option value="Shellder">Shellder</option>         
-              <option value="Krabby">Krabby</option>             
-              <option value="Cubone">Cubone</option>             
-              <option value="Elgyem">Elgyem</option>             
-              <option value="Munna">Munna</option>               
-              <option value="Hoothoot">Hoothoot</option>         
-              <option value="Snubbull">Snubbull</option>         
-              <option value="Phanpy">Phanpy</option>             
-              <option value="Numel">Numel</option>               
-              <option value="Cacnea">Cacnea</option>             
-              <option value="Electrike">Electrike</option>       
-              <option value="Swablu">Swablu</option>
-              <option value="Teddiursa">Teddiursa</option> 
+              <option value="84">Doduo</option>
+              <option value="77">Ponyta</option>
+              <option value="58">Growlithe</option>
+              <option value="100">Voltorb</option>
+              <option value="88">Grimer</option>
+              <option value="109">Koffing</option>
+              <option value="86">Seel</option>
+              <option value="90">Shellder</option>
+              <option value="98">Krabby</option>
+              <option value="104">Cubone</option>
+              <option value="605">Elgyem</option>
+              <option value="517">Munna</option>
+              <option value="163">Hoothoot</option>
+              <option value="209">Snubbull</option>
+              <option value="231">Phanpy</option>
+              <option value="322">Numel</option>
+              <option value="331">Cacnea</option>
+              <option value="309">Electrike</option>
+              <option value="333">Swablu</option>
+              <option value="216">Teddiursa</option>
             </select>
           </div>
         </div>
@@ -201,7 +200,7 @@ function ScannerPage() {
         <div data-box="1" className={chest1Opened ? "pokemon-recieved" : "stand-by"} >
           {chest1Opened ? (
             <div className="pokemon-scan">
-              <h2 className="recieved">You recieved, {pokeBody1.name}</h2>
+              <h2 className="recieved">Stage 1: {pokeBody1.name}</h2>
               <button onClick={() => navigate('/maps')} className="pokemon-button">
                 <img src={pokeBody1.image} alt="Pikachu" width={200} height={200} />
               </button>
@@ -229,7 +228,7 @@ function ScannerPage() {
         <div data-box="2" className={chest2Opened ? "pokemon-recieved" : "stand-by"} >
           {chest2Opened ? (
             <div className="pokemon-scan">
-              <h2 className="recieved">You recieved, {pokeBody2.name}</h2>
+              <h2 className="recieved">Stage 2: {pokeBody2.name}</h2>
               <button onClick={() => navigate('/maps')} className="pokemon-button">
                 <img src={pokeBody2.image} alt="Pikachu" width={200} height={200} />
               </button>
