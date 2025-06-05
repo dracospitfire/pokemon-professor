@@ -25,7 +25,7 @@ function AnalyzerPage() {
   const fetchDailyPokemon = async () => {
     try {
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
-      const URL = import.meta.env.VITE_API_URL + "/api/baseStats_MSA/" + randomNumber;
+      const URL = import.meta.env.VITE_API_URL + "/api/mediScan_MSC/" + randomNumber;
       const response = await axios.get(URL);
       const pokemon = response.data?.data;
       console.log(response)

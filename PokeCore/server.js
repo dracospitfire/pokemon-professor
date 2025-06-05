@@ -34,11 +34,11 @@ ServiceD(SERVICE_D_WS_URL);
 // MSA API Routes
 app.use("/api/baseStats_MSA", require("./routes/serviceARoutes"));
 // MSB API Routes
-app.use("/api/getPokeBody_MSB", require("./routes/serviceBRoutes"));
+app.use("/api/pokeBody_MSB", require("./routes/serviceBRoutes"));
 // MSC API Routes
-app.use("/api/baseStats_MSC", require("./routes/serviceCRoutes"));
+app.use("/api/mediScan_MSC", require("./routes/serviceCRoutes"));
 // MCD API Routes
-app.use("/api/baseStats_MSD", require("./routes/serviceDRoutes"));
+app.use("/api/evoChain_MSD", require("./routes/serviceDRoutes"));
 
 // Adding "Help World" to base URL to confrim backend is working
 app.get("/", (req, res) => {
