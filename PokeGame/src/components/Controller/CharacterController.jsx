@@ -2,6 +2,7 @@ import { useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody } from "@react-three/rapier";
 import { useControls } from "leva";
+import { useAuth } from "../../config/authprovider";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { MathUtils, Vector3 } from "three";
@@ -10,8 +11,7 @@ import { Marshmallow } from "../Objects/Marshmallow";
 import { ProfessorOak } from "../Objects/Professor";
 import { Html } from "@react-three/drei";
 import { useMemo } from "react";
-
-import Pikachu from "../../assets/Images/pokemon/Pikachu.png"
+import axios from "axios";
 
 const normalizeAngle = (angle) => {
   while (angle > Math.PI) angle -= 2 * Math.PI;
@@ -62,6 +62,7 @@ export const CharacterController = ({ chestRef, onChestOpen }) => {
   const [falling, setFalling] = useState(false);
   const [hasFallen, setHasFallen] = useState(false);
   const [chestOpened, setChestOpened] = useState(false); 
+  const [ dailyPokemon, setDailyPokemon] = useState([]);
 
   const characterRotationTarget = useRef(Math.PI);
   const rotationTarget = useRef(0);
@@ -73,33 +74,51 @@ export const CharacterController = ({ chestRef, onChestOpen }) => {
   const cameraLookAt = useRef(new Vector3());
   const [, get] = useKeyboardControls();
   const isClicking = useRef(false);
+  const { user, loading } = useAuth();
 
+  const userName = user?.email?.split("@")[0] ?? "Professor";
+
+  const fetchDailyPokemon = async () => {
+    try {
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const URL = import.meta.env.VITE_API_URL + "/api/baseStats_MSA/" + randomNumber;
+      const response = await axios.get(URL);
+      const pokemon = response.data?.data;
+      console.log(response)
+      console.log("button pressed");
+      if (pokemon) {
+        setDailyPokemon(pokemon);
+        setChestOpened(true);
+      } else {
+        alert("No valid Pokémon received.");
+        console.warn("Invalid data:", pokemon);
+      }
+    } catch (error) {
+      alert("Error fetching daily Pokémon from the server.");
+      console.error("Error fetching DailyPokemon:", error);
+    }
+  };
 
   //ChestOpening effects
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (isNearChest && e.key.toLowerCase() === "r" && !chestOpened) {
-        if (onChestOpen) {
-          setChestOpened(true);
-          onChestOpen();
-        }
+      if (e.key.toLowerCase() === "r" && !chestOpened) {
+        fetchDailyPokemon();
       }
     };
 
     const handleDoubleTap = () => {
       const now = Date.now();
       const doubleTap = now - lastTap.current;
-      if (isNearChest && doubleTap < 300 && !chestOpened) {
-        setChestOpened(true);
-        onChestOpen();
+      if (doubleTap < 300 && !chestOpened) {
+        fetchDailyPokemon();
         }
         lastTap.current = now;
       }
 
     const handleDoubleClick = () => {
-      if (isNearChest && !chestOpened) {
-        setChestOpened(true);
-        onChestOpen();
+      if (!chestOpened) {
+        fetchDailyPokemon();
       }
     };
   
@@ -159,7 +178,7 @@ export const CharacterController = ({ chestRef, onChestOpen }) => {
       if (pos.y < FALL_THRESHOLD) {
         setHasFallen(true);
 
-        rb.current.setTranslation({ x: 0, y: 1, z: 0 }, true);
+        rb.current.setTranslation({ x: 0, y: 1.5, z: 0 }, true);
         rb.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
         rb.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
 
@@ -290,24 +309,24 @@ export const CharacterController = ({ chestRef, onChestOpen }) => {
           )}
           {isNearChest && (
             <Html center>
-              <div className={chestOpened ? "pokemon-reward" : "open-chest"} >
+              <div className={chestOpened ? "pokemon-transfered" : "closed-chest"} >
                 {chestOpened ? (
                   <div className="pokemon-stats">
-                    <h2 className="recieved">You recieved, Pikachu!</h2>
+                    <h2 className="recieved">You recieved, {dailyPokemon.name}!</h2>
                     <button onClick={() => navigate('/maps')} className="pokemon-button">
-                      <img src={Pikachu} alt="Pikachu" width={100} height={100} />
+                      <img src={dailyPokemon.image} alt="dailyPokmeon" width={100} height={100} />
                     </button>
-                    <br></br><strong>Trainer: </strong>Ash Katchum
+                    <br></br><strong>Trainer: </strong>{userName}
                     <ul>
-                      <li><strong>Type:</strong> Electric</li>
-                      <li><strong>HP:</strong> 35</li>
-                      <li><strong>Attack:</strong> 55</li>
-                      <li><strong>Defense:</strong> 40</li>
-                      <li><strong>Speed:</strong> 90</li>
-                      <li><strong>Special Attack:</strong> 50</li>
-                      <li><strong>Special Defense:</strong> 50</li>
+                      <li><strong>Type:</strong> {dailyPokemon.type}</li>
+                      <li><strong>HP:</strong> {dailyPokemon.hp}</li>
+                      <li><strong>Attack:</strong> {dailyPokemon.attack}</li>
+                      <li><strong>Defense:</strong> {dailyPokemon.defense}</li>
+                      <li><strong>Speed:</strong> {dailyPokemon.speed}</li>
+                      <li><strong>Special Attack:</strong> {dailyPokemon.special_attack}</li>
+                      <li><strong>Special Defense:</strong> {dailyPokemon.special_defense}</li>
                     </ul>
-                    </div>
+                  </div>
                 ) : (
                   <>
                     <div>Receive Pokémon</div>

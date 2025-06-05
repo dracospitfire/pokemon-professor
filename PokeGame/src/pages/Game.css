@@ -55,7 +55,7 @@ h2.recieved {
   text-align: center;
 }
 
-.open-chest {
+.closed-chest {
   margin: 0%;
   width: 170px; 
   height: 200px;
@@ -72,7 +72,7 @@ h2.recieved {
   white-space: normal; 
 }
 
-.pokemon-reward {
+.pokemon-transfered {
   margin: 0%;
   padding: 0%;
   width: 180px; 
