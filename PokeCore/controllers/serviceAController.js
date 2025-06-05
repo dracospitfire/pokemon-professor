@@ -1,5 +1,6 @@
 // Load .env variables
 require("dotenv").config();
+
 const WebSocket = require("ws");
 
 // Establish WebSocket connection and retrieve pending requests from Service A

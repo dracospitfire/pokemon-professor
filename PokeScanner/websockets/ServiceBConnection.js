@@ -26,7 +26,7 @@ function initializeWebSocket(server) {
             const { type, requestId, name, battleType } = request;
             console.log(type);
             switch (type) {
-                case 'pokeScan':
+                case 'pokeBody':
                     try {
                         const data = await fetchgetPokeBody(name);
                         ws.send(JSON.stringify({ requestId, type: 'baseStatsResponse', name, data }));

@@ -26,7 +26,7 @@ function initializeWebSocket(server) {
             const { type, requestId, name, battleType } = request;
 
             switch (type) {
-                case 'baseStats':
+                case 'evoChain':
                     try {
                         const data = await fetchgetBaseStats(name);
                         ws.send(JSON.stringify({ requestId, type: 'baseStatsResponse', name, data }));

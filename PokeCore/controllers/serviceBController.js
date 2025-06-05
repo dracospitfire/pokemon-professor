@@ -2,6 +2,7 @@
 require("dotenv").config();
 
 const WebSocket = require("ws");
+
 // Establish WebSocket connection and retrieve pending requests from Service B
 const { getWS, getPendingRequests } = require("../websockets/ServiceBConnection");
 

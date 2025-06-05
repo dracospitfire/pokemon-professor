@@ -78,7 +78,7 @@ function ScannerPage() {
 
     try {
       const name = scanPokemon2.current.trim().toLowerCase();
-      const URL = import.meta.env.VITE_API_URL + "/api/baseStats_MSA/" + name;
+      const URL = import.meta.env.VITE_API_URL + "/api/pokeBody_MSB/" + name;
       const response = await axios.get(URL);
       const pokemon = response.data?.data;
       console.log(response)
@@ -210,7 +210,7 @@ function ScannerPage() {
             </select>
           </div>
           <div className="label-select">
-            <label htmlFor="pokeBody"><strong>Pokmeon #2: </strong></label>
+            <label htmlFor="pokeBody"><strong>Pokemon #2: </strong></label>
             <select
               name="scanPokemon"
               value={pokemon2.scanPokemon}
@@ -300,10 +300,10 @@ function ScannerPage() {
           </div>
         </div>
         <div className="reset-scan" >
-          <button onClick={() => { setChest1Opened(false); pokemon1.scanPokemon = ''; scanPokemon1.current = '';}} className="pokemon1-clear">
+          <button onClick={() => { setChest1Opened(false); setPokemon1({ scanPokemon: '' }); scanPokemon1.current = '';}} className="pokemon1-clear">
             <span className="pokemon1-text"><strong>Clear</strong></span>
           </button>
-          <button onClick={() => { setChest2Opened(false); pokemon2.scanPokemon = ''; scanPokemon2.current = '';}} className="pokemon2-clear">
+          <button onClick={() => { setChest2Opened(false); setPokemon2({ scanPokemon: '' }); scanPokemon2.current = '';}} className="pokemon2-clear">
             <span className="pokemon2-text"><strong>Clear</strong></span>
           </button>
         </div>

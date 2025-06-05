@@ -10,16 +10,16 @@ function connectWebSocket(url) {
   ws.on("open", () => {
       console.log("Connected to Service D WebSocket.");
     //   // Request Bulbasaur's baseStats every 90 seconds
-    //   setInterval(() => {
-    //       if (ws.readyState === WebSocket.OPEN) {
-    //         const requestMessage = {
-    //           type: "baseStats",
-    //           name: "Bulbasaur"
-    //         };
-    //         ws.send(JSON.stringify(requestMessage));
-    //         console.log(`[${new Date().toISOString()}] Requested Bulbasaur baseStats`);
-    //       }
-    //     }, 60 * 1000);
+      setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            const requestMessage = {
+              type: "evoChain",
+              name: "Bulbasaur"
+            };
+            ws.send(JSON.stringify(requestMessage));
+            console.log(`[${new Date().toISOString()}] Requested Bulbasaur baseStats`);
+          }
+        }, 60 * 1000);
     });
 
   ws.on("message", (data) => {

@@ -10,16 +10,16 @@ function connectWebSocket(url) {
   ws.on("open", () => {
       console.log("Connected to Service C WebSocket.");
       // Request Squirtle's baseStats every 90 seconds
-      // setInterval(() => {
-      //     if (ws.readyState === WebSocket.OPEN) {
-      //       const requestMessage = {
-      //         type: "baseStats",
-      //         name: "Squirtle"
-      //       };
-      //       ws.send(JSON.stringify(requestMessage));
-      //       console.log(`[${new Date().toISOString()}] Requested Squirtle baseStats`);
-      //     }
-      //   }, 45 * 1000);
+      setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            const requestMessage = {
+              type: "mediScan",
+              name: "Squirtle"
+            };
+            ws.send(JSON.stringify(requestMessage));
+            console.log(`[${new Date().toISOString()}] Requested Squirtle baseStats`);
+          }
+        }, 45 * 1000);
     });
 
   ws.on("message", (data) => {

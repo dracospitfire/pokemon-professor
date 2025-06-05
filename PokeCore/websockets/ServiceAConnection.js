@@ -10,16 +10,16 @@ function connectWebSocket(url) {
   ws.on("open", () => {
       console.log("Connected to Service A WebSocket.");
       // Request Pikachu's baseStats every 55 seconds
-      // setInterval(() => {
-      //     if (ws.readyState === WebSocket.OPEN) {
-      //       const requestMessage = {
-      //         type: "baseStats",
-      //         name: "Pikachu"
-      //       };
-      //       ws.send(JSON.stringify(requestMessage));
-      //       console.log(`[${new Date().toISOString()}] Requested Pikachu baseStats`);
-      //     }
-      //   }, 55 * 1000);
+      setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            const requestMessage = {
+              type: "baseStats",
+              name: "Pikachu"
+            };
+            ws.send(JSON.stringify(requestMessage));
+            console.log(`[${new Date().toISOString()}] Requested Pikachu baseStats`);
+          }
+        }, 55 * 1000);
     });
 
   ws.on("message", (data) => {

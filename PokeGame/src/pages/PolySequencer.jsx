@@ -78,7 +78,7 @@ function ScannerPage() {
 
     try {
       const name = scanPokemon2.current.trim().toLowerCase();
-      const URL = import.meta.env.VITE_API_URL + "/api/baseStats_MSA/" + name;
+      const URL = import.meta.env.VITE_API_URL + "/api/evoChain_MSD/" + name;
       const response = await axios.get(URL);
       const pokemon = response.data?.data;
       console.log(response)
