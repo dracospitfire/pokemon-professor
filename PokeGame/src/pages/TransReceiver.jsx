@@ -10,7 +10,6 @@ import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
-import Pikachu from "../assets/Images/pokemon/Pikachu.png"
 
 function TransporterPage() {
   const [chestOpened, setChestOpened] = useState(false); 
