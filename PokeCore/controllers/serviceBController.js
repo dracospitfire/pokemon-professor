@@ -26,7 +26,7 @@ const getPokeBody_MSB = async (req, res) => {
 
   // Send request to WebSocket server
   const requestPayload = JSON.stringify({
-    type: 'pokeScan',
+    type: 'pokeBody',
     requestId,
     name,
   });
