@@ -41,9 +41,12 @@ main {
   display: flex;
   flex-direction: row;          
   justify-content: center;
+  align-items: center;
 }
 
 .icon-assistant {
+  margin: 0%;
+  padding: 0%;
   position: relative;
   display: inline-block;
 }

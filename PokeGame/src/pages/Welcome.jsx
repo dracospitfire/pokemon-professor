@@ -3,12 +3,11 @@ import CSSwrapper from "../components/CSSwrapper";
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../config/authprovider";
+import AmyLupin from "../components/LabAssistant/AmyLupin";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
-import assistant from "../assets/Images/icons/Assistant.svg";
 
 function WelcomePage() {
   const { user, loading } = useAuth();
@@ -50,14 +49,7 @@ function WelcomePage() {
       <main>
         <div className="assistant">
           <h1>Pokémon Professor</h1>
-          <div className="icon">
-            <Link to="/" className="icon-assistant" onClick={tbd}>
-              <img src={assistant} alt="take notes" className="assistant-icon" />
-              <span className="icon-assistant-text">
-                <strong>Amy Lupin</strong> - Lab Assistant<br />
-                <strong>Notes:</strong> Professor has not been to the lab in a 4 days and has miss the chance to see some rare Pokémon.</span>
-            </Link>
-          </div>
+          <AmyLupin message="Professor has not been to the lab in a 4 days and has miss the chance to see some rare Pokémon." route="/welcome"/>
         </div>
         <section className="welcomeuser">
           <div className="user">

@@ -8,6 +8,7 @@ import CSSwrapper from "../components/CSSwrapper";
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
+import AmyLupin from "../components/LabAssistant/AmyLupin";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
 
@@ -85,7 +86,10 @@ function TransporterPage() {
       <PokeballThrow />
       <NavBar />
       <main>
-        <h1>Transporter Receiver</h1>
+        <div className="assistant">
+          <h1>Transporter Receiver</h1>
+          <AmyLupin message="Click to go to Main Menu" route="/welcome"/>
+        </div>
         <section className="transReceiver">
           <div className="user">
             <div className="receiver">

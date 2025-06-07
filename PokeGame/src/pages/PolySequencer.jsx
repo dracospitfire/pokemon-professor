@@ -8,6 +8,7 @@ import CSSwrapper from "../components/CSSwrapper";
 import PokeballThrow from "../animations/PokeballThrow";
 import NavBar from "../components/Navigation/NavBar";
 import SocialBar from "../components/Navigation/SocialBar";
+import AmyLupin from "../components/LabAssistant/AmyLupin";
 
 import shoesteps from "../assets/Images/icons/Shoe.svg";
 
@@ -151,12 +152,15 @@ function ScannerPage() {
 
   return (
     <>
-      <CSSwrapper className="scanner" />
+      <CSSwrapper className="sequencer" />
       <PokeballThrow />
       <NavBar />
       <main>
-        <h1>Phylogenetic Sequencer</h1>
-        <section className="budyScanner">
+        <div className="assistant">
+          <h1>Phylogenetic Sequencer</h1>
+          <AmyLupin message="Click to go to Main Menu" route="/welcome"/>
+        </div>
+        <section className="polySequencer">
           <div className="user">
             <div className="receiver">
               <span className="receiver-header"><strong>Evolution Chain Matrixs</strong></span>
