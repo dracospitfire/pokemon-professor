@@ -65,7 +65,7 @@ function ScannerPage() {
     // // Prevent page reload
     // e.preventDefault();
 
-    const pokedexId = Number(evoPokemon.current) + 1
+    const pokedexId = Number(evoPokemon.current)
     if (!pokedexId) {
       alert("Please select Pokémon #2 before scanning.");
       return;
@@ -255,7 +255,7 @@ function ScannerPage() {
           </div>
         </div>
         <div className="reset-scan" >
-          <button onClick={() => { setChest1Opened(false); setPokemon({ scanPokemon: '' }); scanPokemon1.current = '';}} className="pokemon1-clear">
+          <button onClick={() => { setChest1Opened(false); setChest2Opened(false); setPokemon({ scanPokemon: '' }); evoPokemon.current = ''}} className="pokemon1-clear">
             <span className="pokemon1-text"><strong>Clear</strong></span>
           </button>
         </div>
